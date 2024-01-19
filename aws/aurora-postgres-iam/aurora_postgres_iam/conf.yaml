@@ -1,0 +1,51 @@
+instances:
+  - host: {writer_endpoint}
+    username: "datadog"
+    port: 5432
+    dbm: true
+    ignore_databases:
+      - template%
+      - rdsadmin
+    database_autodiscovery:
+      enabled: true
+      exclude:
+        - rdsadmin
+    relations:
+      - relation_regex: ".*"
+    collect_settings:
+      enabled: true
+    collect_schemas:
+      enabled: true
+    collect_function_metrics: true
+    collect_activity_metrics: true
+    collect_bloat_metrics: true
+    aws:
+      instance_endpoint: {writer_endpoint}
+      region: us-east-1
+      managed_authentication:
+        enabled: true
+  - host: {reader_endpoint}
+    username: "datadog"
+    port: 5432
+    dbm: true
+    ignore_databases:
+      - template%
+      - rdsadmin
+    database_autodiscovery:
+      enabled: true
+      exclude:
+        - rdsadmin
+    relations:
+      - relation_regex: ".*"
+    collect_settings:
+      enabled: true
+    collect_schemas:
+      enabled: true
+    collect_function_metrics: true
+    collect_activity_metrics: true
+    collect_bloat_metrics: true
+    aws:
+      instance_endpoint: {reader_endpoint}
+      region: us-east-1
+      managed_authentication:
+        enabled: true
