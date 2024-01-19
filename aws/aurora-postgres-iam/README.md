@@ -36,6 +36,7 @@ cd aws/aurora-postgres-iam
 Activate virtualenv
 
 ```bash
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
