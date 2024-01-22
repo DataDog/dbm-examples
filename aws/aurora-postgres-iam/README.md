@@ -64,13 +64,13 @@ AuroraPostgresIamStack(
 )
 ```
 
-At this point you can now synthesize the CloudFormation template for this code.
+At this point you can now synthesize the CloudFormation template.
 
 ```bash
 cdk synth
 ```
 
-Deploy the CloudFormation template.
+If you would like to deploy this stack, you can now run the following command.
 
 ```bash
 cdk deploy
