@@ -123,6 +123,8 @@ class AuroraPostgresIamStack(Stack):
 
         ############################### Datadog Agent ###############################
         ssh_key_pair = kwargs.get("ssh_key_pair")
+        if not ssh_key_pair:
+            raise ValueError("ssh_key_pair is required")
 
         dd_agent = ec2.Instance(
             self,
@@ -135,7 +137,9 @@ class AuroraPostgresIamStack(Stack):
             security_group=dd_agent_security_group,
             vpc_subnets=subnets,
             associate_public_ip_address=False,
-            key_name=ssh_key_pair,
+            key_pair=ec2.KeyPair.from_key_pair_name(
+                self, "dd-agent-ssh-key-pair", ssh_key_pair
+            ),
             require_imdsv2=True,
         )
 
