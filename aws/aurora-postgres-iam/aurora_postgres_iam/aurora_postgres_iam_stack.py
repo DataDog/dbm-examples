@@ -47,13 +47,6 @@ class AuroraPostgresIamStack(Stack):
             connection=ec2.Port.tcp(5432),
             description="allow dd-agent to connect to aurora cluster",
         )
-
-        # Uncomment the following lines and add your IP address or security group to allow ssh access to dd-agent
-        dd_agent_security_group.add_ingress_rule(
-            peer=ec2.Peer.ipv4("x.x.x.x/32"),
-            connection=ec2.Port.tcp(22),
-            description="allow ssh access to dd-agent",
-        )
         ############################### Security Group ###############################
 
         ############################### Aurora Cluster ###############################
@@ -176,13 +169,9 @@ class AuroraPostgresIamStack(Stack):
 
         dd_agent.user_data.add_commands(
             *[
-                "export PGHOST={}".format(aurora_cluster.cluster_endpoint.hostname),
-                "export PGUSER={}".format(
-                    aurora_cluster.secret.secret_value_from_json("username").unsafe_unwrap()
-                ),
-                "export PGPASSWORD={}".format(
-                    aurora_cluster.secret.secret_value_from_json("password").unsafe_unwrap()
-                ),
+                f"export PGHOST={aurora_cluster.cluster_endpoint.hostname}",
+                f"export PGUSER=$(aws secretsmanager get-secret-value --secret-id {aurora_cluster.secret.secret_name} --region {self.region} --query SecretString --output text | jq -r .username)",
+                f"export PGPASSWORD=$(aws secretsmanager get-secret-value --secret-id {aurora_cluster.secret.secret_name} --region {self.region} --query SecretString --output text | jq -r .password)",
                 "export PGDATABASE=postgres",
                 "psql <<'EOF'",
                 "CREATE USER datadog WITH LOGIN;",
