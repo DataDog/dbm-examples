@@ -17,8 +17,6 @@ This example assumes
 * you have created an SSH key pair in the AWS region you are deploying to. If you do not have an SSH key pair, you can create one by following the [AWS EC2 Key Pairs Getting Started Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair).
 * you have a Datadog API Key. If you do not have a Datadog API Key, you can create one by following the [Datadog API Getting Started Guide](https://docs.datadoghq.com/account_management/api-app-keys/#add-an-api-key).
 
-```bash
-
 ## Setup
 
 Clone this repository
@@ -36,7 +34,7 @@ cd aws/aurora-postgres-iam
 Activate virtualenv
 
 ```bash
-python3 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate
 ```
 
