@@ -205,6 +205,7 @@ class AuroraPostgresIamStack(Stack):
             config = f.read().format(
                 writer_endpoint=aurora_cluster.cluster_endpoint.hostname,
                 reader_endpoint=aurora_cluster.instance_endpoints[0].hostname,
+                region=self.region,
             )
             dd_agent.user_data.add_commands(
                 *[

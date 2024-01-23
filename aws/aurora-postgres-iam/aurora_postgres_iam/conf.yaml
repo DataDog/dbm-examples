@@ -21,7 +21,7 @@ instances:
     collect_bloat_metrics: true
     aws:
       instance_endpoint: {writer_endpoint}
-      region: us-east-1
+      region: {region}
       managed_authentication:
         enabled: true
   - host: {reader_endpoint}
@@ -46,6 +46,6 @@ instances:
     collect_bloat_metrics: true
     aws:
       instance_endpoint: {reader_endpoint}
-      region: us-east-1
+      region: {region}
       managed_authentication:
         enabled: true
