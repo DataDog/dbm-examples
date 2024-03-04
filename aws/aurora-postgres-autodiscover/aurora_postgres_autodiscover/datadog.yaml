@@ -1,0 +1,5 @@
+ec2_prefer_imdsv2: true
+database_monitoring:
+  autodiscovery:
+    aurora:
+      enabled: true
