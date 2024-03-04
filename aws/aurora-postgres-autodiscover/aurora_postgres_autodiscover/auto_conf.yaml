@@ -1,0 +1,14 @@
+ad_identifiers:
+  - _dbm_postgres_aurora
+init_config:
+instances:
+  - host: "%%host%%"
+    port: "%%port%%"
+    username: datadog
+    dbm: true
+    aws:
+      instance_endpoint: "%%host%%"
+      region: "%%extra_region%%"
+    tags:
+    - "dbclusteridentifier:%%extra_dbclusteridentifier%%"
+    - "region:%%extra_region%%"
