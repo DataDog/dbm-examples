@@ -1,7 +1,7 @@
 
 # aurora-postgres-autodiscover
 
-**NOTE**: This is a beta feature. The implementation of this feature is subject to change.
+**NOTE**: This is a beta feature. The implementation of this feature is subject to change. Refer to the [Configuring Database Monitoring for Amazon Aurora DB Clusters](https://docs.datadoghq.com/database_monitoring/guide/aurora_autodiscovery/) documentation for the most up-to-date information.
 
 This is a Datadog Database Monitoring example that monitors an Aurora PostgreSQL Cluster with database host endpoints auto discovery enabled. The datadog agent is deployed on an EC2 instance in the same VPC as the Aurora PostgreSQL Cluster. The agent is configured to monitor the Aurora PostgreSQL Cluster using the [Datadog Database Monitoring for Aurora managed Postgres](https://docs.datadoghq.com/database_monitoring/setup_postgres/aurora/?tab=postgres10).
 
